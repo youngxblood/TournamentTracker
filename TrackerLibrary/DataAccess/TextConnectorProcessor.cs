@@ -7,7 +7,7 @@ using System.Text;
 using System.Threading.Tasks;
 using TrackerLibrary.Models;
 
-namespace TrackerLibrary.DataAccess.TextConnector
+namespace TrackerLibrary.DataAccess.TextHelpers
 {
     public static class TextConnectorProcessor
     {
@@ -45,7 +45,29 @@ namespace TrackerLibrary.DataAccess.TextConnector
 
             foreach (string line in lines)
             {
+                string[] cols = line.Split(',');
 
+                PrizeModel p = new PrizeModel();
+                p.Id = int.Parse(cols[0]);
+                p.PlaceNumber = int.Parse(cols[1]);
+                p.PlaceName = cols[2];
+                p.PrizeAmount = decimal.Parse(cols[3]);
+                p.PrizePercentage = double.Parse(cols[4]);
+
+                output.Add(p);
+            }
+
+            return output;
+        }
+
+        public static void SaveToPrizeFile(this List<PrizeModel> models, string fileName)
+        {
+            List<string> lines = new List<string>();
+
+            foreach (PrizeModel p in  models)
+            {
+                lines.Add($"{p.Id}, {p.PlaceNumber}, {p.PlaceName}, {p.PrizeAmount}, {p.PrizePercentage}");
+                File.WriteAllLines(fileName.FullFilePath(), lines);
             }
         }
     }
