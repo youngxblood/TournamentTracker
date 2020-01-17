@@ -50,6 +50,7 @@
     <Compile Include="DataAccess\TextConnector.cs" />
     <Compile Include="DataAccess\TextConnectorProcessor.cs" />
     <Compile Include="Enums.cs" />
+    <Compile Include="FormValidationHelpers.cs" />
     <Compile Include="GlobalConfig.cs" />
     <Compile Include="Models\MatchupEntryModel.cs" />
     <Compile Include="Models\MatchupModel.cs" />

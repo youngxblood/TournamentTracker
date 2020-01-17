@@ -16,5 +16,3 @@ C:\Mark\programming\C#\TournamentTracker\TournamentTracker\TrackerUI\bin\Debug\T
 C:\Mark\programming\C#\TournamentTracker\TournamentTracker\TrackerUI\obj\Debug\TrackerUI.csproj.CopyComplete
 C:\Mark\programming\C#\TournamentTracker\TournamentTracker\TrackerUI\bin\Debug\Dapper.dll
 C:\Mark\programming\C#\TournamentTracker\TournamentTracker\TrackerUI\bin\Debug\Dapper.xml
-C:\Mark\programming\C#\TournamentTracker\TournamentTracker\TrackerUI\bin\Debug\TrackerUI.exe.CodeAnalysisLog.xml
-C:\Mark\programming\C#\TournamentTracker\TournamentTracker\TrackerUI\bin\Debug\TrackerUI.exe.lastcodeanalysissucceeded

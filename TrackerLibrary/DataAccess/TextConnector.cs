@@ -9,10 +9,11 @@ namespace TrackerLibrary.DataAccess
 {
     public class TextConnector : IDataConnection
     {
+        // File names are declared here
+        // as constants, as they wont change.
+        private const string PrizesFile = "PrizeModels.csv";
+        private const string PeopleFile = "PersonModels.csv";
 
-        private const string PrizesFile = "PrizeModel.csv";
-        
-        // TODO - Wire up to the CreatePrize for text files.
         public PrizeModel CreatePrize(PrizeModel model)
         {
             List<PrizeModel> prizes = PrizesFile.FullFilePath().LoadFile().ConvertToPrizeModel();
@@ -29,6 +30,26 @@ namespace TrackerLibrary.DataAccess
             // Adds the new record with the new ID
             prizes.Add(model);
             prizes.SaveToPrizeFile(PrizesFile);
+            return model;
+        }
+
+
+        public PersonModel CreatePerson(PersonModel model)
+        {
+            List<PersonModel> people = PeopleFile.FullFilePath().LoadFile().ConvertToPersonModel();
+
+            int currentId = 1;
+
+            if (people.Count > 0)
+            {
+                // Sorts prize IDs by desc, then takes top and adds one
+                currentId = people.OrderByDescending(x => x.Id).First().Id + 1;
+            }
+            model.Id = currentId;
+
+            // Adds the new record with the new ID
+            people.Add(model);
+            people.SaveToPeopleFile(PeopleFile);
             return model;
         }
     }

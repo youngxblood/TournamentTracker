@@ -46,7 +46,7 @@ namespace TrackerUI
         }
 
         /// <summary>
-        /// Method to validate the prize form. Form starts as valid and gets invalidated if there are issues
+        /// Method to validate the prize form. Form starts as valid and gets invalidated if there are issues.
         /// </summary>
         /// <returns>Bool</returns>
         private bool ValidateForm()
