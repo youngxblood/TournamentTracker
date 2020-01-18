@@ -1,5 +1,7 @@
 ﻿using Dapper;
+using System.Collections.Generic;
 using System.Data;
+using System.Linq;
 using TrackerLibrary.Models;
 
 /*	@PlaceNumber int,
@@ -12,7 +14,7 @@ namespace TrackerLibrary.DataAccess
 {
     public class SqlConnector : IDataConnection
     {
-
+        private const string db = "Tournaments";
 
         /// <summary>
         /// Saves a new prize to the sql database.
@@ -45,7 +47,7 @@ namespace TrackerLibrary.DataAccess
         /// <returns>The person info, including the unique identifier.</returns>
         public PersonModel CreatePerson(PersonModel model)
         {
-            using (IDbConnection connection = new System.Data.SqlClient.SqlConnection(GlobalConfig.CnnString("Tournaments")))
+            using (IDbConnection connection = new System.Data.SqlClient.SqlConnection(GlobalConfig.CnnString(db)))
             {
                 var p = new DynamicParameters();
                 p.Add("@FirstName", model.FirstName);
@@ -60,6 +62,18 @@ namespace TrackerLibrary.DataAccess
                 model.Id = p.Get<int>("@id");
                 return model;
             }
+        }
+
+        public List<PersonModel> GetPerson_All()
+        {
+            List<PersonModel> output;
+
+            using (IDbConnection connection = new System.Data.SqlClient.SqlConnection(GlobalConfig.CnnString(db)))
+            {
+                output = connection.Query<PersonModel>("dbo.spPeople_GetAll").ToList();
+            }
+
+            return output;
         }
     }
 }

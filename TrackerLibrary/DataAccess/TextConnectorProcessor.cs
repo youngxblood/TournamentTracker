@@ -64,7 +64,7 @@ namespace TrackerLibrary.DataAccess.TextHelpers
             return output;
         }
 
-        public static List<PersonModel> ConvertToPersonModel(this List<string> lines)
+        public static List<PersonModel> ConvertToPersonModels(this List<string> lines)
         {
             List<PersonModel> output = new List<PersonModel>();
 
@@ -76,14 +76,19 @@ namespace TrackerLibrary.DataAccess.TextHelpers
                 p.Id = int.Parse(cols[0]);
                 p.FirstName = cols[1];
                 p.LastName = cols[2];
-                p.PhoneNumber = cols[3];
-                p.EmailAdress = cols[4];
+                p.EmailAdress = cols[3];
+                p.PhoneNumber = cols[4];
+
 
                 output.Add(p);
             }
             return output;
         }
-
+        /// <summary>
+        /// Method that saves the prize model to the .csv file.
+        /// </summary>
+        /// <param name="models"></param>
+        /// <param name="fileName"></param>
         public static void SaveToPrizeFile(this List<PrizeModel> models, string fileName)
         {
             List<string> lines = new List<string>();
@@ -95,6 +100,11 @@ namespace TrackerLibrary.DataAccess.TextHelpers
             }
         }
 
+        /// <summary>
+        /// Method that saves the person model to the .csv file.
+        /// </summary>
+        /// <param name="models"></param>
+        /// <param name="fileName"></param>
         public static void SaveToPeopleFile(this List<PersonModel> models, string fileName)
         {
             List<string> lines = new List<string>();

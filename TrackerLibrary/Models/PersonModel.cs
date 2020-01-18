@@ -38,6 +38,15 @@ namespace TrackerLibrary.Models
         /// </summary>
         /*public int Age { get; set; }*/
 
+        public string FullName
+        {
+            get 
+            {
+                return $"{ FirstName } { LastName }";
+            }
+        }
+
+
         // Default contructor
         public PersonModel()
         {
