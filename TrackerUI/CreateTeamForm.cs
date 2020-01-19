@@ -85,7 +85,10 @@ namespace TrackerUI
             }
         }
 
-        // Look at making a function for this? See "FormValidationHelpers.cs"
+        // TODO: Need to add more form validation for "Add New Member" form.
+        // * Checking for and trimming extra whitespace
+        // * Ensuring that the email address is a valid format
+        // * Ensuring that the phone number is a valid format (maybe make 3 fields?)
         private bool ValidateForm()
         {
             bool output = true;
@@ -146,6 +149,18 @@ namespace TrackerUI
                 selectedTeamMembers.Remove(p);
                 WireUpLists(); 
             }
+        }
+
+        private void createTeamButton_Click(object sender, EventArgs e)
+        {
+            TeamModel t = new TeamModel();
+
+            t.TeamName = teamNameValue.Text;
+            t.TeamMembers = selectedTeamMembers;
+
+            t = GlobalConfig.Connection.CreateTeam(t);
+
+            // TODO: Empty text boxes if we don't close the form
         }
     }
 }
